@@ -1,9 +1,10 @@
 import React from 'react'
+import logo from '../assets/logo.png'
 
 export default function Header() {
   return (
     <header>
-        Header
+        <img src={logo} alt='logo'/>
     </header>
   )
 }
