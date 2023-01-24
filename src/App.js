@@ -1,15 +1,13 @@
-import Footer from "./components/Footer";
-import Header from "./components/Header";
-import Main from "./components/Main";
-import Nav from "./components/Nav";
+import { Outlet } from "react-router";
+import Header from "./components/Header/Header";
+import Nav from "./components/Nav/Nav";
 
 function App() {
   return (
     <>
-      <Header/>
-      <Nav/>
-      <Main/>
-      <Footer/>
+      <Header />
+      <Nav />
+      <Outlet />
     </>
   );
 }
