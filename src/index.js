@@ -3,7 +3,8 @@ import ReactDOM from "react-dom/client";
 import App from "./App";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import HomePage from "./pages/HomePage";
-import ReserveTable from "./pages/ReserveTable";
+import BookingPage from "./pages/BookingPage";
+
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 const router = createBrowserRouter([
@@ -18,7 +19,7 @@ const router = createBrowserRouter([
       },
       {
         path: "Reserve-table",
-        element: <ReserveTable />,
+        element: <BookingPage />,
       },
     ],
   },

@@ -1,0 +1,10 @@
+footer {
+  background-color: rgba(73, 94, 87, 1);
+  background-image: url("D:\courses\projects\Capstone\Capstone\src\assets\logo.png");
+  background-size: cover;
+  background-position: center;
+}
+
+a {
+  color: #000;
+}

@@ -1,0 +1,17 @@
+label {
+  background-color: darkseagreen;
+  padding: 15px;
+  border-radius: 5px;
+}
+
+input {
+  padding: 15px;
+}
+
+button {
+  background-color: darkseagreen;
+  border-radius: 5px;
+  padding: 15px;
+  cursor: pointer;
+}
+
