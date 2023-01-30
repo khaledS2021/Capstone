@@ -4,7 +4,7 @@ import App from "./App";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import BookingPage from "./pages/BookingPage";
-
+import ReservationComplete from "./pages/ReservationComplete";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 const router = createBrowserRouter([
@@ -14,12 +14,16 @@ const router = createBrowserRouter([
 
     children: [
       {
-        path: "Homepage",
+        path: "/Homepage",
         element: <HomePage />,
       },
       {
         path: "Reserve-table",
         element: <BookingPage />,
+      },
+      {
+        path: "Reservation-complete",
+        element: <ReservationComplete />,
       },
     ],
   },

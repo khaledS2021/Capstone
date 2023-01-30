@@ -1,29 +1,47 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { fetchAPI, submitAPI } from "../../helper";
 import "./bookingform.css";
 
 export default function BookingForm() {
   let today = new Date();
+  let availableTimes = fetchAPI(today);
+  const navigate = useNavigate();
+
   const [form, setForm] = useState({
     date: today,
-    availableTimes: fetchAPI(today),
+    timeChoosen: "",
     guests: 1,
     occasion: "",
   });
 
   const handleDateChange = (e) => {
-    let date = new Date(e.target.value);
-    setForm({ ...form, date: date });
+    let choosenDate = new Date(e.target.value);
+    setForm({ ...form, date: choosenDate });
   };
 
-  useEffect(() => {
-    setForm({ ...form, availableTimes: fetchAPI(form.date) });
-    console.log(form.availableTimes);
-  }, [form.date]);
+  availableTimes = fetchAPI(form.date);
 
-  const handleSubmit = (e) => {
-    console.log(submitAPI(form));
-    window.alert('reservation made, thank you')
+  const validateForm = () => {
+    const { date, timeChoosen, guests } = form;
+
+    if (
+      !date ||
+      date === "" ||
+      !timeChoosen ||
+      timeChoosen === "" ||
+      guests === 0
+    ) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
+  const handleSubmit = () => {
+    submitAPI(form);
+    window.alert("Reservation Made, Thank you");
+    navigate("/Reservation-complete", { replace: true });
   };
 
   return (
@@ -45,8 +63,12 @@ export default function BookingForm() {
         <label htmlFor="res-date">Choose date</label>
         <input required onChange={handleDateChange} type="date" id="res-date" />
         <label htmlFor="res-time">Choose time</label>
-        <select required id="res-time ">
-          {form.availableTimes.map((time) => (
+        <select
+          onChange={(e) => setForm({ ...form, timeChoosen: e.target.value })}
+          required
+          id="res-time "
+        >
+          {availableTimes.map((time) => (
             <option key={time}>{time}</option>
           ))}
         </select>
@@ -64,10 +86,16 @@ export default function BookingForm() {
           onChange={(e) => setForm({ ...form, occasion: e.target.value })}
           id="occasion"
         >
+          <option value="">Not Specified</option>
           <option>Birthday</option>
           <option>Anniversary</option>
         </select>
-        <button onClick={handleSubmit} id="subtn" type="submit">
+        <button
+          disabled={validateForm()}
+          onClick={handleSubmit}
+          id="subtn"
+          type="submit"
+        >
           Make Your reservation
         </button>
       </form>
